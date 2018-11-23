@@ -1,13 +1,17 @@
 #Student Array:
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "Please enter the name, then height then nationality of each student"
+  puts "To finish, just hit return three times"
   students = []
   name = gets.chomp
-  while !name.empty? do
-    students << {name: name, cohort: :november}
+  height = gets.chomp
+  nation = gets.chomp
+  while !name.empty? || !height.empty? || !nation.empty? do
+    students << {name: name, cohort: :november, height: height, nation: nation}
     puts "Now we have #{students.count} students"
     name = gets.chomp
+    height = gets.chomp
+    nation = gets.chomp
   end
   students
 end
@@ -21,7 +25,7 @@ end
 def print(names)
   count = 0
   while count < names.length
-    puts "#{names[count][:name]} (#{names[count][:cohort]} cohort)"
+    puts "#{names[count][:name]} (#{names[count][:cohort]} cohort) [#{names[count][:nation]}: #{names[count][:height]}]"
     count += 1
   end
 end
