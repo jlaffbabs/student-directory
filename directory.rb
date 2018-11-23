@@ -24,33 +24,49 @@ def input_students
   end
   puts "Would you like to edit any students? Y/N"
   edit = gets.chomp.upcase
-    while edit == "Y"
-      puts students
-      puts "Which student?"
-      stud_edit = gets.chomp
-      students.each do |student|
-        if student[:name] == stud_edit
-          puts "What would you like to edit? (name/cohort/height/nation)"
-          cat_edit = gets.chomp
-          if cat_edit == "name"
-            puts "Enter your edit"
-            student[:name] = gets.chomp
-          elsif cat_edit == "cohort"
-            puts "Enter your edit"
-            student[:cohort] = gets.chomp
-          elsif cat_edit == "height"
-            puts "Enter your edit"
-            student[:height] = gets.chomp
-          elsif cat_edit == "nation"
-            puts "Enter your edit"
-            student[:nation] == gets.chomp
-          end
+  while edit == "Y"
+    puts students
+    puts "Which student?"
+    stud_edit = gets.chomp
+    students.each do |student|
+      if student[:name] == stud_edit
+        puts "What would you like to edit? (name/cohort/height/nation)"
+        cat_edit = gets.chomp
+        if cat_edit == "name"
+          puts "Enter your edit"
+          student[:name] = gets.chomp
+        elsif cat_edit == "cohort"
+          puts "Enter your edit"
+          student[:cohort] = gets.chomp
+        elsif cat_edit == "height"
+          puts "Enter your edit"
+          student[:height] = gets.chomp
+        elsif cat_edit == "nation"
+          puts "Enter your edit"
+          student[:nation] == gets.chomp
         end
       end
-      puts "Would you like to edit again? Y/N"
-      edit = gets.chomp.upcase
     end
+    puts "Would you like to edit again? Y/N"
+    edit = gets.chomp.upcase
+  end
   students
+end
+
+def cohort_sort(students)
+  sorted_by_cohort = {}
+  students.each do |student|
+    cohort = student[:cohort]
+    name = student[:name]
+    height = student[:height]
+    nation = student[:nation]
+
+    if sorted_by_cohort[cohort] == nil
+      sorted_by_cohort[cohort] = []
+    end
+    sorted_by_cohort[cohort].push("#{name}, Height: #{height}, Nationality: #{nation}")
+  end
+  sorted_by_cohort
 end
 
 #Student List:
@@ -60,10 +76,8 @@ def print_header
 end
 
 def print(names)
-  count = 0
-  while count < names.length
-    puts "#{names[count][:name]} (#{names[count][:cohort]} cohort) #{names[count][:nation]}: #{names[count][:height]}".center(70)
-    count += 1
+  names.each do |cohort|
+    puts cohort
   end
 end
 
@@ -74,6 +88,7 @@ end
 
 #Method Calls:
 students = input_students
+coh = cohort_sort(students)
 print_header
-print(students)
+print(coh)
 print_footer(students)
