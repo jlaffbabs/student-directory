@@ -22,6 +22,34 @@ def input_students
     height = gets.chomp
     nation = gets.chomp
   end
+  puts "Would you like to edit any students? Y/N"
+  edit = gets.chomp.upcase
+    while edit == "Y"
+      puts students
+      puts "Which student?"
+      stud_edit = gets.chomp
+      students.each do |student|
+        if student[:name] == stud_edit
+          puts "What would you like to edit? (name/cohort/height/nation)"
+          cat_edit = gets.chomp
+          if cat_edit == "name"
+            puts "Enter your edit"
+            student[:name] = gets.chomp
+          elsif cat_edit == "cohort"
+            puts "Enter your edit"
+            student[:cohort] = gets.chomp
+          elsif cat_edit == "height"
+            puts "Enter your edit"
+            student[:height] = gets.chomp
+          elsif cat_edit == "nation"
+            puts "Enter your edit"
+            student[:nation] == gets.chomp
+          end
+        end
+      end
+      puts "Would you like to edit again? Y/N"
+      edit = gets.chomp.upcase
+    end
   students
 end
 
