@@ -19,11 +19,10 @@ def print_header
 end
 
 def print(names)
-  puts "Here is a list of students with less than 12 characters in their name"
-  names.each do |student|
-    if student[:name].length < 12
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
+  count = 0
+  while count < names.length
+    puts "#{names[count][:name]} (#{names[count][:cohort]} cohort)"
+    count += 1
   end
 end
 
