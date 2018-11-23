@@ -8,7 +8,11 @@ def input_students
   nation = gets.chomp
   while !name.empty? || !height.empty? || !nation.empty? do
     students << {name: name, cohort: :november, height: height, nation: nation}
-    puts "Now we have #{students.count} students"
+    if students.count == 1
+      puts "Now we have #{students.count} student"
+    else
+      puts "Now we have #{students.count} students"
+    end
     name = gets.chomp
     height = gets.chomp
     nation = gets.chomp
