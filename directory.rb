@@ -1,19 +1,24 @@
 #Student Array:
 def input_students
-  puts "Please enter the name, then height then nationality of each student".center(70)
-  puts "To finish, just hit return three times".center(70)
+  puts "Please enter the name, then cohort, height and then nationality of each student".center(70)
+  puts "To finish, just hit return four times".center(70)
   students = []
   name = gets.chomp
+  cohort = gets.chomp
   height = gets.chomp
   nation = gets.chomp
-  while !name.empty? || !height.empty? || !nation.empty? do
-    students << {name: name, cohort: :november, height: height, nation: nation}
+  while !name.empty? do
+    cohort = "n/a" if cohort.empty?
+    height = "n/a" if height.empty?
+    nation = "n/a" if nation.empty?
+    students << {name: name, cohort: cohort, height: height, nation: nation}
     if students.count == 1
       puts "Now we have #{students.count} student"
     else
       puts "Now we have #{students.count} students"
     end
     name = gets.chomp
+    cohort = gets.chomp
     height = gets.chomp
     nation = gets.chomp
   end
