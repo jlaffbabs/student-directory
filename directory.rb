@@ -4,9 +4,9 @@ def input_students
   puts "To finish, just hit return four times".center(70)
   students = []
   name = gets.chomp
-  cohort = gets.chomp
-  height = gets.chomp
-  nation = gets.chomp
+  cohort = gets.tr("\r\n", "")
+  height = gets.tr("\r\n", "")
+  nation = gets.tr("\r\n", "")
   while !name.empty? do
     cohort = "n/a" if cohort.empty?
     height = "n/a" if height.empty?
@@ -17,38 +17,38 @@ def input_students
     else
       puts "Now we have #{students.count} students"
     end
-    name = gets.chomp
-    cohort = gets.chomp
-    height = gets.chomp
-    nation = gets.chomp
+    name = gets.tr("\r\n", "")
+    cohort = gets.tr("\r\n", "")
+    height = gets.tr("\r\n", "")
+    nation = gets.tr("\r\n", "")
   end
   puts "Would you like to edit any students? Y/N"
-  edit = gets.chomp.upcase
+  edit = gets.tr("\r\n", "").upcase
   while edit == "Y"
     puts students
     puts "Which student?"
-    stud_edit = gets.chomp
+    stud_edit = gets.tr("\r\n", "")
     students.each do |student|
       if student[:name] == stud_edit
         puts "What would you like to edit? (name/cohort/height/nation)"
         cat_edit = gets.chomp
         if cat_edit == "name"
           puts "Enter your edit"
-          student[:name] = gets.chomp
+          student[:name] = gets.tr("\r\n", "")
         elsif cat_edit == "cohort"
           puts "Enter your edit"
-          student[:cohort] = gets.chomp
+          student[:cohort] = gets.tr("\r\n", "")
         elsif cat_edit == "height"
           puts "Enter your edit"
-          student[:height] = gets.chomp
+          student[:height] = gets.tr("\r\n", "")
         elsif cat_edit == "nation"
           puts "Enter your edit"
-          student[:nation] == gets.chomp
+          student[:nation] == gets.tr("\r\n", "")
         end
       end
     end
     puts "Would you like to edit again? Y/N"
-    edit = gets.chomp.upcase
+    edit = gets.tr("\r\n", "").upcase
   end
   students
 end
