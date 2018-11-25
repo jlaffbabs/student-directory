@@ -1,5 +1,6 @@
 #Student Array:
 @students = []
+@students_filename = "students.csv"
 
 def input_students
   puts "Please enter the name, then cohort, height and then nationality of each student".center(70)
@@ -73,7 +74,7 @@ def save_students
   file.close
 end
 
-def load_students (filename = "students.csv")
+def load_students (filename = @students_filename)
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort, height, nation = line.chomp.split(",")
@@ -84,7 +85,9 @@ end
 
 def try_load_students
   filename = ARGV.first
-  return if filename.nil?
+  if filename.nil?
+    filename = @students_filename
+  end
   if File.exists?(filename)
     load_students(filename)
     puts "Loaded #{@students.count} students from #{filename}"
@@ -124,4 +127,5 @@ def interactive_menu
 end
 
 #Method Calls:
+try_load_students
 interactive_menu
