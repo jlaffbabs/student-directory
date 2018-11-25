@@ -65,27 +65,30 @@ def show_students
 end
 
 def save_students
-  filename = STDIN.gets.chomp
-  file = File.open(filename, "w")
+  choose_file
+  @filename = open(@filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort], student[:height], student[:nation]]
     csv_line = student_data.join(",")
-    file.puts csv_line
+    @filename.puts csv_line
   end
-  file.close
 end
 
-def load_students (filename = "")
-  if filename == ""
-    puts "Which file would you like to load?"
-    filename = STDIN.gets.chomp
+def choose_file
+  @filename = STDIN.gets.chomp
+  if @filename == ""
+    @filename = "students.csv"
   end
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
+end
+
+def load_students (*)
+  puts "Which file would you like to load? Default to students.csv"
+  choose_file
+  @filename = open(@filename)
+  @filename.readlines.each do |line|
     name, cohort, height, nation = line.chomp.split(",")
     sorting_student_array(name, cohort, height, nation)
   end
-  file.close
 end
 
 def try_load_students
