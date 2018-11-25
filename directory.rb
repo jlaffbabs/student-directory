@@ -76,14 +76,20 @@ def print_header
 end
 
 def print(names)
-  names.each do |cohort|
-    puts cohort
+  if names.count == 0
+    puts "Villans Academy is currently empty".center(70)
+  else
+    names.each do |cohort|
+      puts cohort
+    end
   end
 end
 
 #Student Count:
 def print_footer(names)
-  puts "Overall we have #{names.count} great students".center(70)
+  if names.count > 0
+    puts "Overall we have #{names.count} great students".center(70)
+  end
 end
 
 #Method Calls:
