@@ -1,10 +1,6 @@
 #Student Array:
 @students = []
 
-def sorting_student_array
-  @students << {name: name, cohort: cohort, height: height, nation: nation}
-end
-
 def input_students
   puts "Please enter the name, then cohort, height and then nationality of each student".center(70)
   puts "To finish, just hit return four times".center(70)
@@ -16,7 +12,7 @@ def input_students
     cohort = "n/a" if cohort.empty?
     height = "n/a" if height.empty?
     nation = "n/a" if nation.empty?
-    sorting_student_array
+    sorting_student_array(name, cohort, height, nation)
     if @students.count == 1
       puts "Now we have #{@students.count} student"
     else
@@ -81,7 +77,7 @@ def load_students (filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort, height, nation = line.chomp.split(",")
-    sorting_student_array
+    sorting_student_array(name, cohort, height, nation)
   end
   file.close
 end
@@ -96,6 +92,10 @@ def try_load_students
     puts "Sorry, #{filename} doesn't exist"
     exit
   end
+end
+
+def sorting_student_array(name, cohort, height, nation)
+  @students << {name: name, cohort: cohort, height: height, nation: nation}
 end
 
 def process(selection)
