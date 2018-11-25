@@ -101,6 +101,10 @@ def sorting_student_array(name, cohort, height, nation)
   @students << {name: name, cohort: cohort, height: height, nation: nation}
 end
 
+def action_success
+  puts "Action was completed successfully."
+end
+
 def process(selection)
   case selection
     when "1"
@@ -117,6 +121,7 @@ def process(selection)
     else
       puts "I don't know what you meant, try again"
   end
+  action_success
 end
 
 def interactive_menu
@@ -125,6 +130,7 @@ def interactive_menu
     process(STDIN.gets.chomp)
   end
 end
+
 
 #Method Calls:
 try_load_students
